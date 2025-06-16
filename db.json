@@ -1,14 +1,13 @@
 {
-  
   "UserDetails": [
-     {
+    {
       "id": "Admin0015",
       "FirstName": "Admin",
-      "LastName":"Admin",
-      "Gender":"Male",
+      "LastName": "Admin",
+      "Gender": "Male",
       "Email": "Admin@gmail.com",
       "Password": "Admin@1234",
-      "role":"Admin"
+      "role": "Admin"
     },
     {
       "id": "5f89",
@@ -17,12 +16,73 @@
       "Gender": "Male",
       "Email": "Bhanwer@gmail.com",
       "Password": "Bhanwer@1234",
-      "role":"User"
-
+      "role": "User"
     }
-   
   ],
-  "Transactions": [],
-  "Loan": [],
-  "LoanPayment": []
+  "Transactions": [
+    {
+      "id": "5d4f",
+      "UserId": "5f89",
+      "Amount": 450000,
+      "Date": "2025-06-01",
+      "Time": "14:48",
+      "Type": "Credit",
+      "Category": "Salary",
+      "Description": "Salary"
+    },
+    {
+      "id": "acc3",
+      "UserId": "5f89",
+      "Amount": 450000,
+      "Type": "Credit",
+      "Category": "Home Loan",
+      "Date": "2025-06-16",
+      "Time": "2:50:57 PM",
+      "Description": "HDFC Bank"
+    },
+    {
+      "id": "01de",
+      "UserId": "5f89",
+      "Transaction_id": "ee42",
+      "Amount": 11961,
+      "Type": "Debit",
+      "Description": "Home Loan",
+      "Category": "Loan EMI / Debt Payments",
+      "Date": "2025-06-16",
+      "Time": "2:51:35 PM"
+    }
+  ],
+  "Loan": [
+    {
+      "id": "ee42",
+      "UserId": "5f89",
+      "LoanType": "Home Loan",
+      "Lender": "HDFC Bank",
+      "amount": 450000,
+      "interestRate": 12.5,
+      "termMonths": 48,
+      "emi": 11961,
+      "startDate": "2025-06-01",
+      "dueDate": "2029-06-01",
+      "TotalAmounttopay": 574128,
+      "repayment": [
+        11961
+      ],
+      "status": "active",
+      "remainingAmount": 562167,
+      "paidEmis": [
+        1
+      ]
+    }
+  ],
+  "LoanPayment": [
+    {
+      "id": "c4df",
+      "loanId": "ee42",
+      "emiNumber": 1,
+      "amountPaid": 11961,
+      "paymentDate": "2025-06-16",
+      "status": "paid"
+    }
+  ]
 }
