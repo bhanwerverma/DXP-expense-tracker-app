@@ -1,0 +1,28 @@
+{
+  
+  "UserDetails": [
+     {
+      "id": "Admin0015",
+      "FirstName": "Admin",
+      "LastName":"Admin",
+      "Gender":"Male",
+      "Email": "Admin@gmail.com",
+      "Password": "Admin@1234",
+      "role":"Admin"
+    },
+    {
+      "id": "5f89",
+      "FirstName": "Bhanwer",
+      "LastName": "verma",
+      "Gender": "Male",
+      "Email": "Bhanwer@gmail.com",
+      "Password": "Bhanwer@1234",
+      "role":"User"
+
+    }
+   
+  ],
+  "Transactions": [],
+  "Loan": [],
+  "LoanPayment": []
+}

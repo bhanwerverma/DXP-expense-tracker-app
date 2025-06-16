@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavbarComponent } from "./navbar/navbar.component";
+import { Router, RouterOutlet } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'ProjectExpenseManager-2';
+export class AppComponent  {
+ 
+  
 }

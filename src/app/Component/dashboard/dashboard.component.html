@@ -1,0 +1,110 @@
+<div class="container-fluid p-3">
+  <div class="row gap-2 justify-content-center">
+    <div class="col-8">
+      <div class="row gap-2">
+        <div
+          class="col border shadow p-3 d-flex flex-column align-items-center text-success"
+        >
+          <div class="row">
+            <strong>Balance</strong>
+          </div>
+          <div class="row">
+            {{ Balance | currency : "INR" : "symbol" : "1.0-0" }}
+          </div>
+        </div>
+        <div
+          class="col border shadow p-3 d-flex flex-column align-items-center text-warning"
+        >
+          <div class="row">
+            <strong>Income</strong>
+          </div>
+          <div class="row">
+            {{ Income | currency : "INR" : "symbol" : "1.0-0" }}
+          </div>
+        </div>
+        <div
+          class="col border shadow p-3 d-flex flex-column align-items-center text-danger"
+        >
+          <div class="row">
+            <strong>Expense</strong>
+          </div>
+          <div class="row">
+            {{ Expense | currency : "INR" : "symbol" : "1.0-0" }}
+          </div>
+        </div>
+        <div
+          class="col border shadow p-3 d-flex flex-column align-items-center text-primary"
+        >
+          <div class="row">
+            <strong>Loan</strong>
+          </div>
+          <div class="row">
+            {{ LoanAmount | currency : "INR" : "symbol" : "1.0-0" }}
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center d-flex mt-4 p-4 gap-2" >
+        <div class="col-5 border shadow text-center p-2">
+          <!-- Chart for Income and Expense -->
+          <strong>Income Data</strong>
+          <canvas #doughnutCanvas></canvas>
+        </div>
+        <div class="col-5 border shadow text-center p-2">
+          <!-- Chart for Income and Expense -->
+          <strong>Expense Data</strong>
+          <canvas #ExpenseDoughnutCanvas></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 border">
+      <div class="table-responsive-lg p-3" style="max-height: 90vh; overflow-y: scroll; ">
+        <table
+          class="table table-striped table-hover table-borderless table-primary align-middle"
+        >
+          <thead class="table-light">
+            <caption class="d-flex justify-content-between">
+              <strong>
+                <i class="bi bi-calendar3"></i> &nbsp; Transaction</strong
+              >
+            </caption>
+            <tr>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody
+            class="table-group-divider"
+            *ngIf="ExpenseDetail.length > 0; else noData"
+          >
+            <tr class="table-primary" *ngFor="let expense of ExpenseDetail">
+              <td *ngIf="expense.Type === 'Credit'">
+                <i class="bi bi-arrow-down text-success fw-bolder"></i
+                >{{ expense.Type }}
+              </td>
+              <td *ngIf="expense.Type === 'Debit'">
+                <i class="bi bi-arrow-up text-danger fw-bolder"></i
+                >{{ expense.Type }}
+              </td>
+              <td>
+                <div class="row fw-semibold fs-6">{{ expense.Category }}</div>
+                <div class="row fw-lighter fs-6">
+                  {{ expense.Date }} {{ expense.Time }}
+                </div>
+              </td>
+              <td>
+                {{ expense.Amount | currency : "INR" : "symbol" : "1.0-0" }}
+              </td>
+            </tr>
+          </tbody>
+          <ng-template #noData>
+            <tr>
+              <td colspan="3" class="text-center">Data Not Found</td>
+            </tr>
+          </ng-template>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

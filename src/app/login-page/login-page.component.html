@@ -1,0 +1,69 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <div class="mb-4 text-center text-secondary"> <strong><h1>Welcome To DXP Tracker</h1></strong></div>
+        <div class="mb-4 text-center text-secondary"> <h3>Login Page</h3></div>
+        <form [formGroup]="UserLogin" (ngSubmit)="onLogin()">
+          <!-- Email input -->
+          <div class="form-floating mb-3">
+            <input
+                type="email"
+                class="form-control"
+               
+                id="Email"
+                placeholder="Enter Email Address"
+                formControlName="Email"
+            />
+            <label for="formId1">Email</label>
+          </div>
+          
+
+          <!-- Password input -->
+          <div class="form-floating mb-3">
+            <input
+                type="password"
+                class="form-control"
+              
+                id="Password"
+                placeholder="Enter Password"
+                formControlName="Password"
+            />
+            <label for="formId1">Password</label>
+          </div>
+          
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            <!-- Checkbox -->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+              <label class="form-check-label" for="form1Example3"> Remember me </label>
+            </div>
+            <a href="#!">Forgot password?</a>
+          </div>
+
+          <!-- Submit button -->
+          <div class="d-flex flex-column"><button type="submit" class="btn btn-primary btn-lg shadow">Sign in</button></div>
+
+          <div class="divider d-flex align-items-center my-4">
+            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+          </div>
+
+        <div class="d-flex flex-column gap-3">
+              <a  class="btn btn-primary btn-lg btn-block shadow" style="background-color: #3b5998" 
+              (click)="SignUp()"
+            >
+            <i class="fab fa-facebook-f me-2"></i>Sign Up
+          </a>
+         
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</section>

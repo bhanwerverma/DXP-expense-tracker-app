@@ -1,0 +1,155 @@
+<div class="container-fluid">
+  <div class="container-lg mt-5 pt-5">
+    <div class="table-responsive-lg">
+      <table
+        class="table table-striped border table-hover table-borderless table-primary align-middle"
+      >
+        <thead class="table-light text-center">
+          <caption class="d-flex">
+            <strong>Loan Details</strong>
+          </caption>
+
+          <tr>
+            <th>Loan Type</th>
+            <th>Lender</th>
+            <th>Amount</th>
+            <th>EMI</th>
+            <th>No of EMI</th>
+            <th>Remaining Amount</th>
+            <th>Starting Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Payment</th>
+          </tr>
+        </thead>
+        <tbody
+          class="table-group-divider"
+       
+        >
+          <tr
+            class="table-primary text-center"
+            *ngFor="let Loan of LoanTransactions"
+          >
+            <td>{{ Loan.LoanType }}</td>
+            <td>{{ Loan.Lender }}</td>
+            <td>
+              {{
+                Loan.TotalAmounttopay | currency : "INR" : "symbol" : "1.0-0"
+              }}
+            </td>
+            <td>{{ Loan.emi | currency : "INR" : "symbol" : "1.0-0" }}</td>
+            <td>{{ Loan.termMonths }}</td>
+            <td>
+              {{ Loan.remainingAmount | currency : "INR" : "symbol" : "1.0-0" }}
+            </td>
+            <td>{{ Loan.startDate | date }}</td>
+            <td>{{ Loan.dueDate | date }}</td>
+            <td
+              [ngClass]="{
+                'text-success': Loan.status === 'active',
+                'text-danger': Loan.status === 'overdue',
+                'text-primary': Loan.status === 'paid'
+              }"
+              *ngIf="Loan.status"
+            >
+              <strong>{{ Loan.status  }}</strong>
+            </td>
+            <td>
+              <button
+                class="btn btn-primary"
+                *ngIf="Loan.id !== undefined"
+                (click)="OpenPayment(Loan.id)"
+              >
+                EMI Payment
+              </button>
+            </td>
+          </tr>
+        </tbody>
+
+        
+        <tfoot>
+         
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<span
+  *ngIf="Payment && selectedLoan"
+  style="
+    position: absolute;
+    width: 40%;
+    height: 50%;
+    margin-left: 30%;
+    top: 25%;
+    background-color: aliceblue;
+    max-height: 50%;
+    overflow-y: scroll;
+  "
+>
+  <div class="container-fluid border border-2 rounded-3">
+    <div class="row d-flex justify-content-between p-3">
+      <div class="col"></div>
+      <div class="col"><h3>Loan Details</h3></div>
+      <div class="col d-flex justify-content-end">
+        <button class="btn btn-close" (click)="closePayment()"></button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-primary text-center">
+        <thead>
+          <tr>
+            <th scope="col">Loan Type</th>
+            <th scope="col">EMI</th>
+            <th scope="col">Lender</th>
+            <th scope="col">No of EMI</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action Button</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Terms of getMonthsArray(selectedLoan.termMonths)">
+            <td>{{ selectedLoan.LoanType }}</td>
+            <td>
+              {{ selectedLoan.emi | currency : "INR" : "symbol" : "1.0-0" }}
+            </td>
+            <td>{{ selectedLoan.Lender }}</td>
+            <td>{{ Terms }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'text-success':
+                    selectedLoan.paidEmis &&
+                    selectedLoan.paidEmis.includes(Terms),
+                  'text-primary':
+                    !selectedLoan.paidEmis ||
+                    !selectedLoan.paidEmis.includes(Terms)
+                }"
+              >
+                <strong>
+                  {{
+                    selectedLoan.paidEmis && selectedLoan.paidEmis.includes(Terms)
+                      ? "Payment Successfull"
+                      : "unpaid"
+                  }}
+                </strong>
+              </span>
+            </td>
+            <td>
+              <button
+                class="btn btn-primary"
+                [disabled]="
+                  selectedLoan.paidEmis && selectedLoan.paidEmis.includes(Terms)
+                "
+                (click)="EMIPayment(Terms)"
+              >
+                Payment
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</span>

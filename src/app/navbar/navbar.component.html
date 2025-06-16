@@ -1,0 +1,88 @@
+<!-- 🌐 User View -->
+<div class="container-fluid" *ngIf="!isAdmin">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 py-2 shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-dark">
+        <i class="bi bi-ui-checks-grid"></i> DXP TRACKER
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#userNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="userNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="showUserdashboard">
+          <li class="nav-item">
+            <a class="btn btn-primary text-white me-2" routerLink="/Dashboard">
+              <i class="bi bi-grid-1x2-fill"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary text-white me-2" routerLink="/Expense">
+              <i class="bi bi-wallet2"></i> Expense
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary text-white me-2" routerLink="/Loan">
+              <i class="bi bi-currency-rupee"></i> Loan
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary text-white me-2" routerLink="/LoanData">
+              <i class="bi bi-currency-rupee"></i> Loan Data
+            </a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center" *ngIf="showUserdashboard">
+          <div class="me-3 text-secondary">
+            <strong>
+              {{ User?.FirstName | titlecase }}
+              {{ User?.LastName | titlecase }}
+            </strong>
+          </div>
+          <button class="btn btn-outline-danger btn-sm" (click)="SignOut()">
+            <i class="bi bi-box-arrow-right"></i> Sign out
+          </button>
+        </div>
+
+        <div *ngIf="!showUserdashboard" class="d-flex ms-auto">
+          <a class="btn btn-primary text-white me-2" routerLink="/Signup">
+            <i class="bi bi-person-plus"></i> Sign up
+          </a>
+          <button class="btn btn-success text-white" (click)="Signin()">
+            <i class="bi bi-box-arrow-in-right"></i> Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- 🔐 Admin View -->
+<div class="container-fluid" *ngIf="isAdmin">
+  <div class="row bg-secondary text-white py-2 px-4">
+    <div class="col">
+      <h4><i class="bi bi-ui-checks-grid"></i> DXP TRACKER (Admin)</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-1 col-1 bg-dark text-white d-flex flex-column align-items-center py-4" style="min-height: 100vh;">
+      <a routerLink="/AdminDashboard" class="text-white mb-3 fs-5"><i class="bi bi-columns"></i></a>
+      <a routerLink="/AdminUsers" class="text-white mb-3 fs-5"><i class="bi bi-person"></i></a>
+      <a routerLink="/UserTransactions" class="text-white mb-3 fs-5"><i class="bi bi-arrow-left-right"></i></a>
+      <a (click)="SignOut()" class="text-white fs-5 mt-auto"><i class="bi bi-box-arrow-right"></i></a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-10 col-9 p-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

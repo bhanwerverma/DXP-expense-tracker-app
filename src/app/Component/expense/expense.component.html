@@ -1,0 +1,145 @@
+<div class="container-fluid p-4">
+  <div class="container-sm mt-5 border p-4 rounded shadow bg-body-tertiary" >
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="mb-3">
+        <label class="form-label">Amount</label>
+        <input
+          type="number"
+          name="amount"
+          [(ngModel)]="transaction.Amount"
+          class="form-control"
+          placeholder="Amount"
+          required
+          [min]="0"
+        />
+        <small class="text-muted">Enter Amount</small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input
+          type="date"
+          name="date"
+          [(ngModel)]="transaction.Date"z
+          class="form-control"
+          required
+        />
+        <small class="text-muted">Enter Date of Transaction</small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Time</label>
+        <input
+          type="time"
+          name="time"
+          [(ngModel)]="transaction.Time"
+          class="form-control"
+          required
+        />
+        <small class="text-muted">Enter Time of Transaction</small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Type</label>
+        <select
+          class="form-select"
+          name="type"
+          [(ngModel)]="transaction.Type"
+          required
+        >
+          <option value="" disabled selected>Select one</option>
+          <option value="Debit">Debit</option>
+          <option value="Credit">Credit</option>
+        </select>
+        <small class="text-muted">Select the Type of Transaction</small>
+      </div>
+
+      <div class="mb-3" *ngIf="transaction.Type === 'Debit'">
+        <label class="form-label">Category</label>
+        <select
+          class="form-select"
+          name="category"
+          [(ngModel)]="transaction.Category"
+          required
+        >
+          <option value="" disabled selected>Select one</option>
+          <option value="Food & Groceries">Food & Groceries</option>
+          <option value="Housing / Rent">Housing / Rent</option>
+          <option value="Utilities (electricity, water, internet)">
+            Utilities (electricity, water, internet)
+          </option>
+          <option value="Transportation (fuel, public transport, repairs)">
+            Transportation (fuel, public transport, repairs)
+          </option>
+          <option value="Health & Medical">Health & Medical</option>
+          <option value="Insurance (health, vehicle, home)">
+            Insurance (health, vehicle, home)
+          </option>
+          <option value="Loan EMI / Debt Payments">
+            Loan EMI / Debt Payments
+          </option>
+          <option value="Savings & Investments">Savings & Investments</option>
+          <option value="Shopping (clothes, electronics)">
+            Shopping (clothes, electronics)
+          </option>
+          <option value="Entertainment (movies, subscriptions)">
+            Entertainment (movies, subscriptions)
+          </option>
+          <option value="Dining Out">Dining Out</option>
+          <option value="Travel & Vacation">Travel & Vacation</option>
+          <option value="Education / Courses">Education / Courses</option>
+          <option value="Fitness & Gym">Fitness & Gym</option>
+          <option value="Gifts & Donations">Gifts & Donations</option>
+          <option value="Miscellaneous">Miscellaneous</option>
+          <option value="Fees & Charges (bank fees, late fees)">
+            Fees & Charges (bank fees, late fees)
+          </option>
+          <option value="Childcare / Kids">Childcare / Kids</option>
+          <option value="Pets">Pets</option>
+          <option value="Business / Work-related">
+            Business / Work-related
+          </option>
+          <small class="text-muted">Select the Category</small>
+        </select>
+      </div>
+
+      <div class="mb-3" *ngIf="transaction.Type === 'Credit'">
+        <label class="form-label">Category</label>
+        <select
+          class="form-select"
+          name="category"
+          [(ngModel)]="transaction.Category"
+          required
+        >
+          <option value="" disabled selected><strong>Income</strong></option>
+          <option value="Salary">Salary</option>
+          <option value="Business Profit">Business Profit</option>
+          <option value="Freelance Income">Freelance Income</option>
+          <option value="Interest Income">Interest Income</option>
+          <option value="Rental  Income">Rental Income</option>
+          <option value="Investment Returns">Investment Returns</option>
+          <option value="Gift Received">Gift Received</option>
+          <option value="Loan Received">Loan Received</option>
+          <option value="Refund/Reimbursement">Refund/Reimbursement</option>
+          <option value="Others">Others</option>
+          <small class="text-muted">Select the Category</small>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          name="description"
+          [(ngModel)]="transaction.Description"
+          rows="3"
+        ></textarea>
+        <small class="text-muted">Write Something About this Transaction</small>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

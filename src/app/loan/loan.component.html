@@ -1,0 +1,106 @@
+<div class="container-lg p-4">
+  <div class="container-sm border mt-5 p-4 rounded bg-body-tertiary shadow">
+    <form [formGroup]="LoanForm" (ngSubmit)="onSubmit()">
+    <div class="col-md mb-3">
+      <div class="form-floating">
+        <select class="form-select" id="LoanType" formControlName="LoanType">
+           <option disabled value="">Open this select menu</option>
+          <option *ngFor="let Types of LoanType" value="Types" [value]="Types">{{Types}}</option>
+        </select>
+        <label for="floatingSelectGrid">Loan Type:</label>
+      </div>
+    </div>
+
+    <div class="col-md mb-3">
+      <div class="form-floating">
+        <select class="form-select" id="Lender" formControlName="Lender">
+          <option disabled value="" >Open this select menu</option>
+          <option value="Lenders" *ngFor="let Lenders of LoanLender" [value]="Lenders">{{Lenders}}</option>
+        </select>
+        <label for="floatingSelectGrid">Lender:</label>
+      </div>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        name="formId1"
+        id="amount"
+        placeholder=""
+        [min]="0"
+        formControlName="amount"
+      />
+      <label for="formId1">Amount</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        name="formId1"
+        id="interestRate"
+        placeholder=""
+        [min]="7"
+        formControlName="interestRate"
+      />
+      <label for="formId1">Rate of Intreset:</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        name="formId1"
+        id="termMonths"
+        placeholder=""
+        [min]="6"
+        formControlName="termMonths"
+      />
+      <label for="formId1">Tenure Month:</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        name="formId1"
+        id="emi"
+        placeholder=""
+        disabled
+        [value]="(MonthlyEmi |currency:'INR':'symbol':'1.2-2')"
+      />
+      <label for="formId1">Monthly Emi:</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="date"
+        class="form-control"
+        name="formId1"
+        id="startDate"
+        placeholder=""
+        formControlName="startDate"
+        
+      />
+      <label for="formId1">Starting Date:</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="date"
+        class="form-control"
+        name="formId1"
+        id="formId1"
+        placeholder=""
+        [value]="DUEDATEString"
+        disabled
+       
+      />
+      <label for="formId1">End Date</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </form>
+  </div>
+</div>
